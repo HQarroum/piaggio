@@ -1,13 +1,6 @@
 <h1 align="center">
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<img width="1200" src="assets/icon.png" alt="logo">
-	<br>
-	<br>
-	<br>
+	<img src="assets/icon.png" alt="logo">
 	<br>
 	<br>
 </h1>
