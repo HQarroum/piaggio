@@ -1,41 +1,44 @@
 import os
 import tempfile
 
-from PIL import Image, ImageFile
+from PIL import Image
 from tqdm import tqdm
 from scenedetect import ContentDetector, SceneManager, open_video
 from scenedetect.video_splitter import is_ffmpeg_available
 from scenedetect.scene_manager import save_images
 
-# Allow loading truncated images.
-ImageFile.LOAD_TRUNCATED_IMAGES=True
-
 # A list of supported image file extensions.
-IMAGE_EXTENSIONS = {'.png', '.jpg', '.jpeg'}
+IMAGE_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff'}
 
-def load_images_from_directory(directory):
+def load_images_from_directory(directory: str) -> list:
     """
     Load all images from the given directory.
-    Returns a list of tuples (PIL image, file_path).
+    :param directory: The directory containing images.
+    :return: A list of tuples (image, file_path).
     """
     images = []
+
+    # Check if the directory exists and is not empty.
     if not os.path.isdir(directory):
         raise ValueError(f'Directory {directory} not found.')
     if not os.listdir(directory):
         raise ValueError(f'Directory {directory} is empty.')
 
+    # List all files in the directory and filter out non-image files.
     image_files = [
         os.path.join(directory, f)
         for f in os.listdir(directory)
         if os.path.splitext(f)[1].lower() in IMAGE_EXTENSIONS
     ]
+
+    # Load the images in memory.
     for image_file in tqdm(image_files, desc='Loading images'):
         image = Image.open(image_file).convert('RGB')
         images.append((image, image_file))
     return images
 
 
-def load_images_from_video(video_path) -> list:
+def load_images_from_video(video_path: str) -> list:
   """
   Load images from a video file.
   :param video_path: The path to the video file.
