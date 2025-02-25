@@ -41,11 +41,8 @@ def load_images_from_video(video_path) -> list:
   :param video_path: The path to the video file.
   :return: A list of scenes containing images.
   """
-  # Check if the video file exists.
   if not os.path.isfile(video_path):
     raise ValueError(f'Video file {video_path} not found.')
-
-  # Check if FFmpeg is available.
   if not is_ffmpeg_available():
     raise ValueError('FFmpeg not found. Please install FFmpeg to extract images from videos.')
   

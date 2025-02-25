@@ -5,7 +5,7 @@ from sklearn.decomposition import PCA
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-def plot_embeddings(embeddings, labels):
+def plot_embeddings(embeddings: np.ndarray, labels: np.ndarray):
     """
     Plot embeddings with PCA to 2D to visualize clusters.
     :param embeddings: The image embeddings to plot.
@@ -19,10 +19,14 @@ def plot_embeddings(embeddings, labels):
     plt.show()
 
 
-def plot_embeddings_with_images(images, embeddings, labels):
+def plot_embeddings_with_images(
+    images: list,
+    embeddings: np.ndarray,
+    labels: np.ndarray
+):
     """
     Plot images with PCA to 2D, displaying images at their cluster positions.
-    :param images: The images to plot.
+    :param images: The PIL images to plot.
     :param embeddings: The image embeddings to plot.
     :param labels: The cluster labels for the embeddings.
     """
@@ -41,7 +45,7 @@ def plot_embeddings_with_images(images, embeddings, labels):
 
     # Create space for the colorbar
     divider = make_axes_locatable(ax)
-    cax = divider.append_axes("right", size="5%", pad=0.05)
+    cax = divider.append_axes('right', size='5%', pad=0.05)
 
     # Add a colorbar in the space just created
     plt.colorbar(scatter, cax=cax, label='Cluster label')
@@ -52,8 +56,8 @@ def plot_embeddings_with_images(images, embeddings, labels):
         ab = AnnotationBbox(imgbox, (reduced[i, 0], reduced[i, 1]), frameon=False)
         ax.add_artist(ab)
 
-    plt.title("PCA of Image Embeddings with Images", fontsize=15)
-    plt.xlabel("PCA Component 1")
-    plt.ylabel("PCA Component 2")
+    plt.title('PCA of Image Embeddings with Images', fontsize=15)
+    plt.xlabel('PCA Component 1')
+    plt.ylabel('PCA Component 2')
     plt.grid(True)
     plt.show()
