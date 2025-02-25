@@ -54,7 +54,7 @@ def is_blurry_image(pil_image, threshold=100.0) -> tuple:
 
 def clean_images(images: list) -> list:
     """
-    Clean a list of images by filtering out black, technical, and blurry frames.
+    Clean a list of images by filtering out technical frames.
     :images (list): A list of tuples (image, file_path) where image is a PIL image.
     :return: A list of cleaned images.
     """

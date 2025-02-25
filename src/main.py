@@ -85,14 +85,14 @@ if __name__ == '__main__':
 
   dir_provided = args.directory is not None and Path(args.directory).is_dir()
   video_provided = args.video is not None and Path(args.video).is_file()
+  output_dir = Path(args.output_dir or 'output')
 
   # Verify that the user provided either a directory or a video file.
   if not dir_provided and not video_provided:
     parser.error('Please provide either a directory or a video file.')
 
-  # Verify that the output directory is provided and exists.
-  if not args.output_dir or not Path(args.output_dir).is_dir():
-    parser.error('Please provide an existing output directory.')
+  # Create the output directory if it does not exist.
+  output_dir.mkdir(parents=True, exist_ok=True)
 
   # Load images from the source.
   if dir_provided:
