@@ -35,4 +35,3 @@ $ uv sync
 > This application requires ffmpeg/mkvmerge for video splitting support.
 
 ## What's this ❓
-
