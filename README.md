@@ -66,9 +66,14 @@ graph LR
 
 Install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) locally to download videos from YouTube.
 
+> ℹ️ This is only provided as an example for research purposes, use responsibly according to YouTube's terms of service.
+
 ```bash
 # Download video and encode as MP4.
-yt-dlp -S res,ext:mp4:m4a --recode mp4 '<url>'
+yt-dlp \
+  -S res,ext:mp4:m4a \
+  --recode mp4 \
+  'https://www.youtube.com/watch?v=<video-id>'
 
 # Extract keyframes.
 uv run src/main.py \
@@ -76,7 +81,65 @@ uv run src/main.py \
   -o path/to/output/directory
 ```
 
-#### Deduplicating images
+In this example, we're trying [this NetworkChuck video](https://www.youtube.com/watch?v=Ju0ndy2kwlw) which is 1.4 GB in size, 34 minutes long, and contains 62,836 frames in total. Piaggio managed to reduce the number of frames to only 22 images after clustering. Below are some of the extracted keyframes.
+
+<br />
+<table>
+  <tr>
+    <td>
+      <img width="260" src="assets/keyframes/1.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/2.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/3.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/4.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/5.jpg" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img width="260" src="assets/keyframes/6.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/7.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/8.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/9.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/10.jpg" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img width="260" src="assets/keyframes/11.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/12.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/13.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/14.jpg" />
+    </td>
+    <td>
+      <img width="260" src="assets/keyframes/15.jpg" />
+    </td>
+  </tr>
+</table>
+<br />
+
+#### Deduplicating images from a local directory
 
 ```bash
 uv run src/main.py \

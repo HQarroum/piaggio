@@ -49,7 +49,7 @@ def load_images_from_video(video_path: str) -> list:
   if not is_ffmpeg_available():
     raise ValueError('FFmpeg not found. Please install FFmpeg to extract images from videos.')
   
-  # Open the video file; this returns a VideoStream instance.
+  # Open the video file.
   video = open_video(video_path)
 
   # Extract frames from the video.
