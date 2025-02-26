@@ -43,6 +43,20 @@ Use-cases in mind include keyframe extractions from videos (e.g thumbnail genera
 
 #### Extracting keyframes from a video
 
+<br>
+
+```mermaid
+graph LR
+	A[Video] --> B[Scene Detection]
+	B --> C[Semantic Fingerprinting]
+	C --> D[Technical Frames Filtering]
+	D --> E[Clustering]
+	E --> F[Deduplication]
+	F --> G[Output]
+```
+
+<br>
+
 ```bash
 uv run src/main.py \
   -v path/to/video.mp4 \
