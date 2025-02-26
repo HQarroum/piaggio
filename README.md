@@ -3,8 +3,8 @@
 <p align="center">
 	<img width="300" src="assets/icon.png" alt="logo">
 	<br>
-	<h2 align="center">Image Deduplication &nbsp;<img alt="Static Badge" src="https://img.shields.io/badge/Experiment-e28743"></h2>
-	<p align="center">A clustering algorithm example for de-duplicating near exact images in videos using vector embeddings.</p>
+	<h2 align="center">Video Scene Clustering &nbsp;<br /><img alt="Static Badge" src="https://img.shields.io/badge/Experimental-e28743"></h2>
+	<p align="center">A clustering algorithm example for de-duplicating near exact images in videos using vector embeddings and segmentation clusters.</p>
 	<p align="center">
 		<a href="https://github.com/codespaces/new/HQarroum/image-deduplication"><img alt="Github Codespaces" src="https://github.com/codespaces/badge.svg" /></a>
 	</p>

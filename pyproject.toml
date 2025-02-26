@@ -1,5 +1,5 @@
 [project]
-name = "image-deduplication"
+name = "video-scene-clustering"
 version = "0.1.0"
 description = "A clustering algorithm example for de-duplicating near exact images in videos using vector embeddings."
 readme = "README.md"

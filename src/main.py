@@ -1,82 +1,28 @@
 import os
 import shutil
-import argparse
 
 from pathlib import Path
 from clean import clean_images
+from args import parser
 from tqdm import tqdm
+
 from embeddings import (
   get_image_embeddings,
   cluster_images,
   uniq_per_cluster
 )
+
 from processing import (
   load_images_from_directory,
   load_images_from_video
 )
+
 from plot import (
   plot_embeddings,
   plot_embeddings_with_images
 )
 
-parser = argparse.ArgumentParser()
-
-# Image directory.
-parser.add_argument(
-  '-d', '--directory',
-  help='The directory containing images to process.'
-)
-
-# Video file.
-parser.add_argument(
-  '-v', '--video',
-  help='The video file to process.'
-)
-
-# DBSCAN epsilon value.
-parser.add_argument(
-  '-e', '--epsilon',
-  help='The epsilon value for DBSCAN clustering.',
-  type=float,
-  default=0.2
-)
-
-# DBSCAN minimum samples.
-parser.add_argument(
-  '-s', '--min-samples',
-  help='The minimum number of samples for DBSCAN clustering.',
-  type=int,
-  default=2
-)
-
-# DBSCAN metric.
-parser.add_argument(
-  '-t', '--metric',
-  help='The distance metric for DBSCAN clustering.',
-  default='cosine'
-)
-
-# Whether to plot the embeddings.
-parser.add_argument(
-  '-p', '--plot',
-  help='Whether to plot the embeddings.',
-  action='store_true'
-)
-
-# Whether to plot the embeddings with images.
-parser.add_argument(
-  '-i', '--plot-images',
-  help='Whether to plot the embeddings with images.',
-  action='store_true'
-)
-
-# The output for the results.
-parser.add_argument(
-  '-o', '--output-dir',
-  help='The output directory for the results.'
-)
-
-# Parse the command-line arguments.
+# Command-line arguments.
 args = parser.parse_args()
 
 # Check if main function.
@@ -116,7 +62,7 @@ if __name__ == '__main__':
     metric=args.metric
   )
 
-  # Filter images
+  # Get unique images from each cluster.
   unique_images = uniq_per_cluster(images, labels)
 
   # Copy the selected images to the output directory.

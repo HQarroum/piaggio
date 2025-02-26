@@ -2,8 +2,12 @@ import torch
 import numpy as np
 import clip
 
+from args import parser
 from tqdm import tqdm
 from sklearn.cluster import DBSCAN
+
+# Command-line arguments.
+args = parser.parse_args()
 
 # Select the appropriate device to run the model on
 # based on the availability of CUDA and MPS.
@@ -11,7 +15,7 @@ device = 'cuda' if torch.cuda.is_available() else \
   ('mps' if torch.backends.mps.is_available() else 'cpu')
 
 # Load the CLIP model and pre-processing function.
-model, processor = clip.load('ViT-B/32', device=device)
+model, processor = clip.load(args.model, device=device)
 
 def get_image_embeddings(images: list) -> torch.Tensor:
     """
@@ -21,7 +25,12 @@ def get_image_embeddings(images: list) -> torch.Tensor:
     :return: Torch tensor of embeddings.
     """
     image_tensors = [
-        processor(image).unsqueeze(0) for image, _ in tqdm(images, desc='Processing images', unit='image')
+        processor(image)
+            .unsqueeze(0) for image, _ in tqdm(
+                images,
+                desc='Creating embeddings',
+                unit='image'
+            )
     ]
     batch = torch.cat(image_tensors, dim=0).to(device)
     with torch.no_grad():
