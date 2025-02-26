@@ -62,7 +62,6 @@ def load_images_from_video(video_path: str) -> list:
 
   # Create a temporary directory.
   temp_dir = tempfile.mkdtemp()
-  print(f"Extracting frames to {temp_dir}")
   save_images(
       scene_list=scene_list,
       video=video,
