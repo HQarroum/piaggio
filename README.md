@@ -43,24 +43,21 @@ Use-cases in mind include keyframe extractions from videos (e.g thumbnail genera
 
 #### Extracting keyframes from a video
 
-<br>
-
-```mermaid
-graph LR
-	A[Video] --> B[Scene Detection]
-	B --> C[Semantic Fingerprinting]
-	C --> D[Technical Frames Filtering]
-	D --> E[Clustering]
-	E --> F[Deduplication]
-	F --> G[Output]
-```
-
-<br>
-
 ```bash
 uv run src/main.py \
   -v path/to/video.mp4 \
   -o path/to/output/directory
+```
+
+##### Workflow
+
+```mermaid
+graph LR
+	A[Video] --> B(Scene Detection)
+	B --> C(Semantic Fingerprinting)
+	C --> D(Technical Frames Filtering)
+	D --> E(Clustering)
+	E --> F(Deduplication)
 ```
 
 #### Deduplicating images
@@ -69,6 +66,15 @@ uv run src/main.py \
 uv run src/main.py \
 	-d path/to/images/directory \
 	-o path/to/output/directory
+```
+
+##### Workflow
+
+```mermaid
+graph LR
+	A[Images] --> B(Semantic Fingerprinting)
+	B --> C(Clustering)
+	C --> D(Deduplication)
 ```
 
 #### Plot the clusters
