@@ -12,10 +12,12 @@
 
 ## 🔖 Features
 
-- 📹 **Scene Detection** - Uses [PySceneDetect](https://github.com/Breakthrough/PySceneDetect) to extract transition frames from videos.
+- 📹 **Scene Detection** - Uses scene detection to extract transition frames from videos.
 - 🤖 **Semantic Fingerprinting** — Uses vector embeddings to perform semantic de-duplication of images.
 - ⬛ **Technical Frames Detection** — Filters out black and white technical frames.
 - 🖼️ **Image Deduplication** — Allows to semantically de-duplicate images in addition to videos.
+- 📈 **Plotting** - Allows to plot and visualize the image clusters.
+- 🦎 **Local-first** - Runs entirely locally, on GPU or CPU.
 
 ## 🚀 Installation
 
@@ -35,13 +37,13 @@ uv sync
 
 ## What's this ❓
 
-Piaggio is a semantic image clustering tool that you can run from the command-line to de-duplicate near exact images from videos or a collection of images. It uses vector embeddings to perform semantic de-duplication of images and PySceneDetect to extract transition frames from videos.
+Piaggio is a semantic image clustering tool that you can run from the command-line to de-duplicate near exact images from videos or a collection of images. It uses vector embeddings to perform semantic de-duplication of images and [PySceneDetect](https://github.com/Breakthrough/PySceneDetect) to extract transition frames from videos.
 
-Use-cases in mind include keyframe extractions from videos (e.g thumbnail generation), or semantic de-duplication of images in a dataset which means this tool will cluster images not only based on their pixel resemblance but also on their semantic content.
+Use-cases in mind include keyframe extractions from videos (e.g in the context of thumbnail generation), or semantic de-duplication of images in a dataset by clustering images not only based on their pixel resemblance but also on their semantic content.
 
 ## 📚 Usage
 
-#### Extracting keyframes from a video
+#### Extracting keyframes from a local video
 
 ```bash
 uv run src/main.py \
@@ -60,30 +62,44 @@ graph LR
 	E --> F(Deduplication)
 ```
 
+#### Extracting keyframes from a YouTube video
+
+Install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) locally to download videos from YouTube.
+
+```bash
+# Download video and encode as MP4.
+yt-dlp -S res,ext:mp4:m4a --recode mp4 '<url>'
+
+# Extract keyframes.
+uv run src/main.py \
+  -v path/to/video.mp4 \
+  -o path/to/output/directory
+```
+
 #### Deduplicating images
 
 ```bash
 uv run src/main.py \
-	-d path/to/images/directory \
-	-o path/to/output/directory
+  -d path/to/images/directory \
+  -o path/to/output/directory
 ```
 
 ##### Workflow
 
 ```mermaid
 graph LR
-	A[Images] --> B(Semantic Fingerprinting)
-	B --> C(Clustering)
-	C --> D(Deduplication)
+  A[Images] --> B(Semantic Fingerprinting)
+  B --> C(Clustering)
+  C --> D(Deduplication)
 ```
 
 #### Plot the clusters
 
 ```bash
 uv run src/main.py \
-	-d path/to/images/directory \
-	-o path/to/output/directory \
-	--plot
+  -d path/to/images/directory \
+  -o path/to/output/directory \
+  --plot
 ```
 
 <p align="center">
