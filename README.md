@@ -81,7 +81,7 @@ uv run src/main.py \
   -o path/to/output/directory
 ```
 
-In this example, we're trying [this NetworkChuck video](https://www.youtube.com/watch?v=Ju0ndy2kwlw) which is 1.4 GB in size, 34 minutes long, and contains 62,836 frames in total. Piaggio managed to reduce the number of frames to only 22 images after clustering. Below are some of the extracted keyframes.
+In this example, we're trying [this NetworkChuck video](https://www.youtube.com/watch?v=Ju0ndy2kwlw) which is 1.4 GB in size, 34 minutes long, and contains 62,836 frames in total. Piaggio managed to reduce the number of frames to only 22 images after clustering. Below are some of the extracted keyframes from the semantic cluster.
 
 <br />
 <table>
